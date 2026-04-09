@@ -2,24 +2,96 @@
 <html>
 <head>
     <title>Angie Sinopoli</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+            color: #222;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 40px;
+            font-size: 22px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        a {
+            text-decoration: none;
+            color: #4a6cf7;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .nav {
+            margin-bottom: 30px;
+        }
+
+        .nav a {
+            margin-right: 15px;
+            font-weight: 500;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Hi, I'm Ang 👋</h1>
-    <p>I’m a Computer and Information Science student at Ohio State.</p>
+    <div class="container">
 
-    <h2>Projects</h2>
-    <ul>
-        <li>
-            <a href="https://github.com/YOURUSERNAME/project1">
-                Project 1 Name
-            </a>
-        </li>
-    </ul>
+        <div class="nav">
+            <a href="#">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
 
-    <h2>Resume</h2>
-    <p><a href="resume.pdf">Download my resume</a></p>
+        <h1>Angie Sinopoli</h1>
+        <p>
+            Computer and Information Science student at Ohio State.
+            Passionate about building practical, user-friendly software.
+        </p>
 
-    <h2>Contact</h2>
-    <p>Email: your@email.com</p>
+        <h2 id="projects">Projects</h2>
+
+        <div class="card">
+            <h3>Natural Number Calculator</h3>
+            <p>Java Swing application implementing OSU components and MVC design.</p>
+            <a href="https://github.com/angiesinopoli/portfolio-mycomponent">View on GitHub</a>
+        </div>
+
+        <div class="card">
+            <h3>More Projects Coming Soon</h3>
+            <p>Currently working on expanding my portfolio.</p>
+        </div>
+
+        <h2 id="contact">Contact</h2>
+        <p>Email: your@email.com</p>
+        <p>
+            <a href="https://github.com/angiesinopoli">GitHub</a>
+        </p>
+
+    </div>
 </body>
 </html>
