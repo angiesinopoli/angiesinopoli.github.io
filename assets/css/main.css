@@ -193,6 +193,18 @@ input, select, textarea {
 			text-align: justify;
 		}
 
+		div.content-flow {
+			text-align: justify;
+		}
+
+			div.content-flow p {
+				margin: 0 0 1em 0;
+			}
+
+			div.content-flow p:last-child {
+				margin-bottom: 0;
+			}
+
 	h1, h2, h3, h4, h5, h6 {
 		font-weight: 300;
 		line-height: 1.5;
