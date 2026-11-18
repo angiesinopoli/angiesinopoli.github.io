@@ -8,7 +8,7 @@ My personal portfolio site, built to showcase my projects, experience, and a lit
 - **My work** — featured projects, including [LSAT Liaison](https://chatgpt.com/g/g-6a26e23f6c1481918996754485b6d822-lsat-liaison), an AI-powered LSAT tutoring system, along with my Java, full-stack, and coursework projects.
 - **Experience & skills** — my background in IT support and software development, and the languages and tools I work in.
 - **What I'm listening to** — a handful of albums in rotation.
-- **Resume & contact** — links to reach me directly.
+- **Contact** — links to reach me directly.
 
 ## Built with
 

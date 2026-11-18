@@ -8,12 +8,23 @@
 	<head>
 		<title>Angie Sinopoli | Portfolio</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
 		<style>
-			#header.alt .logo img { max-width: 100px !important; height: auto !important; }
+			#header.alt .logo img {
+				width: 100px !important;
+				max-width: 100px !important;
+				height: 100px !important;
+				box-sizing: content-box;
+				padding: 0.4em;
+				border: solid 1px rgba(255, 255, 255, 0.45);
+				border-radius: 50%;
+			}
+			@media (prefers-reduced-motion: reduce) {
+				#header.alt .logo, body.is-preload #header.alt .logo { transition: opacity 0.3s ease !important; transform: none !important; }
+			}
 			.spotlight .image img { object-fit: cover; object-position: center bottom; width: 130px !important; height: 130px !important; }
 			body, p, li, td, th, input, select, textarea { font-family: 'Nunito', sans-serif !important; font-weight: 400; }
 			h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', Georgia, serif !important; letter-spacing: 0 !important; }
@@ -62,9 +73,131 @@
 				text-align: center;
 				color: #6b8c57;
 			}
+
+			/* Project cards */
+			.project-meta {
+				font-size: 0.8em;
+				letter-spacing: 0.04em;
+				color: #7a8f74;
+				margin: -0.5em 0 0.75em 0;
+			}
+			.tech-list {
+				font-size: 0.8em;
+				color: #6b8c57;
+				font-weight: 600;
+				margin: 0;
+			}
+
+			/* Experience */
+			.experience { text-align: left; }
+			.experience h4 { margin: 2.25em 0 0.75em 0; color: #3d5438; }
+			.experience h4:first-child { margin-top: 0; }
+			.role { margin: 0 0 1.5em 0; padding-left: 1em; border-left: 2px solid #dfe8d8; }
+			.role-head {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				align-items: baseline;
+				gap: 0 1em;
+				margin: 0 0 0.5em 0;
+			}
+			.role-title { font-weight: 600; color: #3d5438; }
+			.role-dates { font-size: 0.85em; color: #7a8f74; }
+			.role ul { margin: 0 0 0.5em 0; }
+			.role ul li { padding-left: 0.25em; }
+
+			/* Skills */
+			.skills-heading { margin: 3em 0 0.5em 0; }
+			.skills-legend {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.5em 1.5em;
+				font-size: 0.85em;
+				color: #7a8f74;
+				margin: 0 0 1.75em 0;
+				padding: 0;
+				list-style: none;
+			}
+			.skills-legend li { padding: 0; display: flex; align-items: center; gap: 0.5em; }
+			.skills-grid {
+				display: grid;
+				grid-template-columns: repeat(5, 1fr);
+				gap: 1em;
+				margin: 0 0 1.5em 0;
+				padding: 0;
+				list-style: none;
+				text-align: left;
+			}
+			.skills-grid > li {
+				padding: 1.1em 1em 1.2em 1em;
+				background: rgba(87, 110, 80, 0.06);
+				border-top: 4px solid #6b8c57;
+				border-radius: 6px;
+			}
+			.skills-grid > li.style1 { border-top-color: #b5cc9a; }
+			.skills-grid > li.style2 { border-top-color: #8faf74; }
+			.skills-grid > li.style3 { border-top-color: #6b8c57; }
+			.skills-grid > li.style4 { border-top-color: #4a6741; }
+			.skills-grid > li.style5 { border-top-color: #3a5235; }
+			.skills-grid h5 { margin: 0 0 0.75em 0; font-size: 0.95em; color: #3d5438; text-transform: none; letter-spacing: 0; }
+			.chips { display: flex; flex-wrap: wrap; gap: 0.4em; margin: 0; padding: 0; list-style: none; }
+			.chips li, .chip-sample {
+				padding: 0 0.6em;
+				font-size: 0.8em;
+				line-height: 1.9;
+				border-radius: 1em;
+				border: 1px solid #8faf74;
+				color: #3d5438;
+				background: #ffffff;
+			}
+			.chips li.work, .chip-sample.work { background: #6b8c57; border-color: #6b8c57; color: #ffffff; }
+			.chip-sample { display: inline-block; width: 1.6em; padding: 0; line-height: 1.2; }
+
+			@media screen and (max-width: 1280px) {
+				.skills-grid { grid-template-columns: repeat(3, 1fr); }
+			}
+			@media screen and (max-width: 736px) {
+				.skills-grid { grid-template-columns: repeat(2, 1fr); }
+				.role { padding-left: 0.75em; }
+			}
+			@media screen and (max-width: 480px) {
+				.skills-grid { grid-template-columns: 1fr; }
+			}
+
+			/* Movement */
+			#page-stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
+			#main .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+			#main .reveal.is-visible { opacity: 1; transform: none; }
+
+			.skills-grid > li { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+			.project-icon:before { transition: transform 0.25s ease; }
+			#listening .features li img { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+
+			@media (hover: hover) {
+				.skills-grid > li:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(58, 82, 53, 0.12); }
+				#first .features li:hover .project-icon:before { transform: translateY(-4px); }
+				#listening .features li:hover img { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); }
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.skills-grid > li, .project-icon:before, #listening .features li img { transition: none !important; }
+				.skills-grid > li:hover, #first .features li:hover .project-icon:before, #listening .features li:hover img { transform: none !important; }
+			}
+
+			/* Listening */
+			.last-updated {
+				font-size: 0.8em;
+				letter-spacing: 0.05em;
+				color: #9aa596;
+				margin: 0;
+			}
 		</style>
 	</head>
 	<body class="is-preload">
+
+		<canvas id="page-stars" aria-hidden="true"></canvas>
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -85,7 +218,7 @@
 							<li><a href="#first">Projects</a></li>
 							<li><a href="#second">Experience</a></li>
 							<li><a href="#listening">Listening</a></li>
-							<li><a href="#cta">Resume &amp; contact</a></li>
+							<li><a href="#cta">Contact</a></li>
 						</ul>
 					</nav>
 
@@ -103,11 +236,11 @@
 											<p class="definition-word">resourceful <span class="definition-phonetic">/rəˈsôrsf(ə)l/</span></p>
 											<p class="definition-text">Being resourceful means working through a problem with whatever tools and information I already have, and keeping a level head when a situation is new or unclear. It's the trait I lean on most.</p>
 										</div>
-										<p>I'm Angie, a Computer &amp; Information Science student at The Ohio State University, on an individualized specialization track that lets me keep my options open while I figure out where I fit best in tech. I grew up near Cleveland and started coding in high school, but it was my harder college courses that made me realize how much I enjoy the challenge. School came easily to me for a long time, so the first classes that really made me work for it were also the most rewarding.</p>
-										<p>I'm practical, independent, and resourceful, and I don't fit the usual picture of someone in tech. I'm outgoing and people-oriented, and being able to explain technical things clearly and put people at ease is one of my biggest strengths.</p>
-										<p>Most of my hands-on programming experience is in Java, and I've also worked with Python, C, JavaScript, and HTML/CSS through coursework and projects. Alongside school I've been working in enterprise IT at Westfield Insurance, which has shown me how technology runs inside a large company. I'm still deciding where I want to focus, whether that's development, systems, data, or a mix of things, but I want to keep working on real problems and building things I'm proud of. Outside of class and work, I'm usually at the gym, out with friends, or home with my dogs, Thor and Sparkle.</p>
+										<p>I'm Angie, a Computer &amp; Information Science student at The Ohio State University, graduating in May 2028. I grew up near Cleveland and started coding in high school. My individualized specialization pairs computer science with business coursework, because the problems I find most interesting usually involve people and organizations as much as code.</p>
+										<p>I've worked in enterprise IT support, IT financial planning, and help desk and classroom technology support, and I build software on my own time. Across all of it, I like the same things: figuring out how a system works, finding a fix that holds up, and explaining it clearly enough that the next person doesn't have to start over. I'm outgoing and people-oriented, so the conversations around technical work matter to me as much as the work itself.</p>
+										<p>That mix is what draws me to software development, solutions engineering, and technology consulting. Outside of class and work, I'm usually at the gym, out with friends, or home with my dogs, Thor and Sparkle.</p>
 										<ul class="actions">
-											<li><a href="https://github.com/angiesinopoli" class="button">View my GitHub</a></li>
+											<li><a href="https://github.com/angiesinopoli" class="button" target="_blank" rel="noopener noreferrer">View my GitHub</a></li>
 										</ul>
 									</div>
 									<span class="image"><img src="images/IMG_2239.jpeg" alt="Angie Sinopoli" /></span>
@@ -123,27 +256,40 @@
 									<li>
 										<span class="icon solid fa-brain project-icon"></span>
 										<h3><a href="https://chatgpt.com/g/g-6a26e23f6c1481918996754485b6d822-lsat-liaison" target="_blank" rel="noopener noreferrer">LSAT Liaison</a></h3>
-										<p>An AI tutoring tool that helps LSAT students understand why an answer is wrong, not just which one. Built around structured prompt design, reasoning-pattern analysis, and a Socratic style that asks guiding questions instead of handing over the answer.</p>
+										<p class="project-meta">Custom GPT &middot; Personal project</p>
+										<p>A custom GPT I designed for structured LSAT tutoring. I wrote the instructions that shape how it teaches: breaking questions down by reasoning type, explaining why wrong answers are wrong, and asking guiding questions instead of handing over the answer, so each session works like an interactive lesson.</p>
+										<p class="tech-list">Prompt engineering &middot; Instructional design &middot; Structured reasoning</p>
 									</li>
 									<li>
 										<span class="icon solid fa-spa project-icon"></span>
-										<h3><a href="https://dupe-finder-ui.vercel.app">Dupe Finder</a></h3>
-										<p>A full-stack app that finds ingredient-based dupes for makeup and skincare, so you're not paying more for the same formula. Built with a Java Spring Boot backend, a React front end, and the OpenBeautyFacts API. It was my first project taken end to end, from the data layer to a working interface.</p>
+										<h3><a href="https://dupe-finder-ui.vercel.app" target="_blank" rel="noopener noreferrer">Dupe Finder</a></h3>
+										<p class="project-meta">Full-stack web app &middot; Personal project</p>
+										<p>A beauty product comparison app that finds possible alternatives to a cosmetic product based on what's in the formula. I built it end to end: a Spring Boot backend that pulls ingredient data from the OpenBeautyFacts API, matching logic that scores products by Jaccard similarity, and a React front end for searching and comparing results.</p>
+										<p class="tech-list">Java &middot; Spring Boot &middot; React &middot; REST APIs</p>
 									</li>
 									<li>
-										<span class="icon brands fa-github project-icon"></span>
-										<h3><a href="https://github.com/angiesinopoli">Full GitHub Profile</a></h3>
-										<p>The rest of my work lives here, including coursework and personal projects.</p>
+										<span class="icon solid fa-user-check project-icon"></span>
+										<h3>Offboarding Follow-Up Automation</h3>
+										<p class="project-meta">Case study &middot; Westfield Insurance</p>
+										<p>A PowerShell workflow that closes gaps in employee offboarding. It pulls separation data with SQL, checks whether managers completed the required offboarding tickets, generates a monthly spreadsheet of completed and missing tickets, and drafts reminder emails for anything outstanding. Collaborated on development with another intern and a mentor, splitting the workflow into separate methods. The finished automation was implemented.</p>
+										<p class="tech-list">PowerShell &middot; SQL &middot; Automation</p>
 									</li>
 									<li>
 										<span class="icon solid fa-wrench project-icon"></span>
 										<h3>IT Troubleshooting Decision Tool</h3>
-										<p><em>In progress:</em> a guided troubleshooting tool based on my enterprise IT support experience. It walks users through common tech problems with plain-language questions and clear next steps, and points them to a real person only when it's needed.</p>
+										<p class="project-meta">Guided support tool &middot; In progress</p>
+										<p>A guided troubleshooting tool based on my enterprise IT support experience. It walks users through common tech problems with plain-language questions and clear next steps, and points them to a real person only when it's needed.</p>
+									</li>
+									<li>
+										<span class="icon brands fa-github project-icon"></span>
+										<h3><a href="https://github.com/angiesinopoli" target="_blank" rel="noopener noreferrer">Full GitHub Profile</a></h3>
+										<p class="project-meta">Coursework &middot; Personal projects</p>
+										<p>The rest of my work lives here, including coursework and personal projects.</p>
 									</li>
 								</ul>
 								<footer class="major">
 									<ul class="actions special">
-										<li><a href="https://github.com/angiesinopoli" class="button">View all on GitHub</a></li>
+										<li><a href="https://github.com/angiesinopoli" class="button" target="_blank" rel="noopener noreferrer">View all on GitHub</a></li>
 									</ul>
 								</footer>
 							</section>
@@ -152,64 +298,86 @@
 							<section id="second" class="main special">
 								<header class="major">
 									<h2>Experience &amp; skills</h2>
-									<p>I've spent a few years solving other people's tech problems,<br />
-									everywhere from a busy front desk to an enterprise IT team.</p>
 								</header>
-								<ul class="statistics">
+								<div class="experience">
+									<h4>Westfield Insurance</h4>
+									<div class="role">
+										<div class="role-head">
+											<span class="role-title">IT Enterprise Technical Support Representative Intern</span>
+											<span class="role-dates">May 2026 &ndash; August 2026; October 2026 &ndash; Present</span>
+										</div>
+										<ul>
+											<li>Troubleshoot hardware, software, account access, and virtual desktop issues for employees across the company, working incidents and tasks in ServiceNow</li>
+											<li>Handle identity and access requests in SailPoint and support Citrix and virtual desktop (VDI) environments</li>
+											<li>Write PowerShell scripts to automate routine work, including the offboarding follow-up automation above</li>
+											<li>Write internal documentation and knowledge base articles, and work with other technical teams to resolve escalated issues</li>
+										</ul>
+									</div>
+									<div class="role">
+										<div class="role-head">
+											<span class="role-title">IT Financial &amp; Portfolio Planning Analyst Intern</span>
+											<span class="role-dates">August 2026 &ndash; October 2026</span>
+										</div>
+										<ul>
+											<li>Supported IT financial and portfolio planning by reviewing and maintaining Excel-based financial information</li>
+											<li>Worked in a Microsoft Access database tracking contractor invoices and payments</li>
+											<li>Helped troubleshoot spreadsheet problems, including VBA issues, alongside analysts and project management stakeholders</li>
+										</ul>
+									</div>
+
+									<h4>The Ohio State University, Fisher College of Business</h4>
+									<div class="role">
+										<div class="role-head">
+											<span class="role-title">Learning Environment Support Technician</span>
+											<span class="role-dates">September 2026 &ndash; Present</span>
+										</div>
+										<ul>
+											<li>Answer help desk calls and resolve tech issues for Fisher faculty, staff, and students</li>
+											<li>Troubleshoot classroom and office technology in person when an issue needs hands-on help</li>
+										</ul>
+									</div>
+								</div>
+
+								<h3 class="skills-heading">Technical skills</h3>
+								<ul class="skills-legend" aria-label="Key">
+									<li><span class="chip-sample work" aria-hidden="true">&nbsp;</span> Used at work</li>
+									<li><span class="chip-sample" aria-hidden="true">&nbsp;</span> Coursework &amp; projects</li>
+								</ul>
+								<ul class="skills-grid">
 									<li class="style1">
-										<span class="icon solid fa-code"></span>
-										<strong>Java</strong> primary language
+										<h5>Programming</h5>
+										<ul class="chips">
+											<li>Java</li><li>C</li><li>Python</li><li>JavaScript</li><li class="work">PowerShell</li><li>x86-64 Assembly (AT&amp;T Syntax)</li>
+										</ul>
 									</li>
 									<li class="style2">
-										<span class="icon solid fa-terminal"></span>
-										<strong>Python / C</strong> coursework
+										<h5>Web development</h5>
+										<ul class="chips">
+											<li>HTML</li><li>CSS</li><li>React</li><li>Spring Boot</li><li>REST APIs</li>
+										</ul>
 									</li>
 									<li class="style3">
-										<span class="icon brands fa-js"></span>
-										<strong>JavaScript</strong> front-end
+										<h5>Enterprise technology</h5>
+										<ul class="chips">
+											<li class="work">ServiceNow</li><li class="work">Citrix</li><li class="work">SailPoint</li><li class="work">VDI</li>
+										</ul>
 									</li>
 									<li class="style4">
-										<span class="icon brands fa-github"></span>
-										<strong>Git/GitHub</strong> version control
+										<h5>Data &amp; business tools</h5>
+										<ul class="chips">
+											<li class="work">Excel</li><li class="work">Microsoft Access</li><li class="work">VBA</li>
+										</ul>
 									</li>
 									<li class="style5">
-										<span class="icon solid fa-headset"></span>
-										<strong>ServiceNow</strong> enterprise IT
+										<h5>Developer tools</h5>
+										<ul class="chips">
+											<li>Git</li><li>GitHub</li><li>VS Code</li><li>Linux</li>
+										</ul>
 									</li>
 								</ul>
-								<div class="content-flow">
-									<p>My path into tech started when I realized I was good at putting technical things in plain language, walking people through how something worked, and finding workarounds when something broke. That started at Urban Air and continued into two roles at Westfield Insurance, where I saw the same kind of work on a much larger scale.</p>
-									<p>I do most of my coding in VS Code, have worked in Eclipse, and I'm comfortable working both in a local IDE and on a remote Linux environment through OSU's College of Engineering.</p>
-
-									<h4>Westfield Insurance</h4>
-									<p><strong>IT Financial &amp; Portfolio Planning Analyst Intern</strong>, August 2026 &ndash; Present</p>
-									<ul>
-										<li>Reviewing IT project workbooks to validate developer labor assignments and catch unreported resources, so staffing records stay accurate</li>
-										<li>Maintaining a Microsoft Access database that tracks contractor invoices and payments across the IT project portfolio</li>
-										<li>Finding discrepancies in VBA-enabled financial workbooks and escalating them to financial analysts and IT project managers</li>
-									</ul>
-
-									<p><strong>IT Enterprise Technical Support Representative Intern</strong>, May 2026 &ndash; August 2026</p>
-									<ul>
-										<li>Provided enterprise-wide technical support for hardware, software, networking, account access, and virtual desktop issues through ServiceNow, phone, chat, and in person</li>
-										<li>Provisioned and decommissioned virtual desktops, installed enterprise applications, and fulfilled access requests across tools like Citrix Workspace/Director, Microsoft 365, and Visual Studio</li>
-										<li>Co-developed a PowerShell script that automated a manual service-desk process, contributing to the scripting, testing, and documentation</li>
-										<li>Collaborated across IT teams to resolve escalated incidents and document repeatable solutions</li>
-									</ul>
-
-									<h4>Urban Air</h4>
-									<p><strong>IT Assistant &amp; Events Coordinator</strong>, September 2023 &ndash; January 2026</p>
-									<ul>
-										<li>Provided IT support for POS systems, facility hardware, network connectivity, and internal software</li>
-										<li>Troubleshot hardware and software issues on the spot during high-volume shifts</li>
-										<li>Managed software updates and equipment inventory to keep check-ins and payments running</li>
-									</ul>
-
-									<p>Support work gave me a broad technical foundation, and the planning side is showing me how that day-to-day work connects to bigger decisions. I'm still deciding where I want to specialize, but I know I want to keep learning and do work I can point to.</p>
-								</div>
 								<footer class="major">
 									<ul class="actions special">
-										<li><a href="https://www.linkedin.com/in/angelina-sinopoli-534a3534b" class="button">View LinkedIn</a></li>
+										<li><a href="https://www.linkedin.com/in/angelina-sinopoli-534a3534b" class="button" target="_blank" rel="noopener noreferrer">View LinkedIn</a></li>
 									</ul>
 								</footer>
 							</section>
@@ -221,44 +389,43 @@
 		</header>
 		<ul class="features">
 			<li>
-				<img src="images/album-arctic-monkeys.jpg" alt="Whatever People Say I Am, That's What I'm Not" style="display: block; width: 90px; height: 90px; object-fit: cover; border-radius: 6px; margin: 0 auto 0.75em;">
-				<h3><a href="https://open.spotify.com/album/50Zz8CkIhATKUlQMbHO3k1?si=ldSYpkb2TBOOAr3VQY98Ew" target="_blank" rel="noopener noreferrer">Whatever People Say I Am, That's What I'm Not</a></h3>
+				<img src="images/album-arctic-monkeys-am.jpg" alt="AM album cover" style="display: block; width: 90px; height: 90px; object-fit: cover; border-radius: 6px; margin: 0 auto 0.75em;">
+				<h3><a href="https://open.spotify.com/album/78bpIziExqiI9qztvNFlQu" target="_blank" rel="noopener noreferrer">AM</a></h3>
 				<p>Arctic Monkeys</p>
 			</li>
 			<li>
-				<img src="images/album-backseat-lovers.jpg" alt="When We Were Friends" style="display: block; width: 90px; height: 90px; object-fit: cover; border-radius: 6px; margin: 0 auto 0.75em;">
-				<h3><a href="https://open.spotify.com/album/3TSMSh5dai7WEnEGOoMXBZ?si=2lpfLS1qSLyut6D_SK1OsA" target="_blank" rel="noopener noreferrer">When We Were Friends</a></h3>
-				<p>Backseat Lovers</p>
+				<img src="images/album-neighbourhood-chip-chrome.jpg" alt="Chip Chrome &amp; The Mono-Tones album cover" style="display: block; width: 90px; height: 90px; object-fit: cover; border-radius: 6px; margin: 0 auto 0.75em;">
+				<h3><a href="https://open.spotify.com/album/4uNgt1uQs6wZRm4giB3shX" target="_blank" rel="noopener noreferrer">Chip Chrome &amp; The Mono-Tones</a></h3>
+				<p>The Neighbourhood</p>
 			</li>
 			<li>
-				<img src="images/album-adele-25.jpg" alt="25" style="display: block; width: 90px; height: 90px; object-fit: cover; border-radius: 6px; margin: 0 auto 0.75em;">
-				<h3><a href="https://open.spotify.com/album/3AvPX1B1HiFROvYjLb5Qwi?si=zp7LMHEdRqa2oPzf5Gthug" target="_blank" rel="noopener noreferrer">25</a></h3>
-				<p>Adele</p>
+				<img src="images/album-oasis-morning-glory.jpg" alt="(What's the Story) Morning Glory? album cover" style="display: block; width: 90px; height: 90px; object-fit: cover; border-radius: 6px; margin: 0 auto 0.75em;">
+				<h3><a href="https://open.spotify.com/album/2u30gztZTylY4RG7IvfXs8" target="_blank" rel="noopener noreferrer">(What's the Story) Morning Glory?</a></h3>
+				<p>Oasis</p>
 			</li>
 			<li>
-				<img src="images/album-malcolm-todd.jpg" alt="Do That Again" style="display: block; width: 90px; height: 90px; object-fit: cover; border-radius: 6px; margin: 0 auto 0.75em;">
-				<h3><a href="https://open.spotify.com/album/2kxdruQ1hg4Kt4mZSRR7I6?si=UPPralspS6yDExb5WEz3wQ" target="_blank" rel="noopener noreferrer">Malcolm Todd</a></h3>
-				<p>Malcolm Todd</p>
+				<img src="images/album-steve-lacy-gemini-rights.jpg" alt="Gemini Rights album cover" style="display: block; width: 90px; height: 90px; object-fit: cover; border-radius: 6px; margin: 0 auto 0.75em;">
+				<h3><a href="https://open.spotify.com/album/3Ks0eeH0GWpY4AU20D5HPD" target="_blank" rel="noopener noreferrer">Gemini Rights</a></h3>
+				<p>Steve Lacy</p>
 			</li>
 			<li>
-				<img src="images/album-eagles.jpg" alt="Hotel California" style="display: block; width: 90px; height: 90px; object-fit: cover; border-radius: 6px; margin: 0 auto 0.75em;">
-				<h3><a href="https://open.spotify.com/album/2widuo17g5CEC66IbzveRu?si=P8FQdYkERi-_V2DHRJH1aA" target="_blank" rel="noopener noreferrer">Hotel California</a></h3>
-				<p>Eagles</p>
+				<img src="images/album-don-toliver-hardstone-psycho.jpg" alt="HARDSTONE PSYCHO album cover" style="display: block; width: 90px; height: 90px; object-fit: cover; border-radius: 6px; margin: 0 auto 0.75em;">
+				<h3><a href="https://open.spotify.com/track/3mLDq0hbHkafZoy4GvF7EG" target="_blank" rel="noopener noreferrer">KRYPTONITE</a></h3>
+				<p>Don Toliver</p>
 			</li>
 		</ul>
+		<p class="last-updated">last updated: november 2026</p>
 	</section>
 
 						<!-- Get Started -->
 							<section id="cta" class="main special">
 								<header class="major">
-									<h2>Resume &amp; contact</h2>
-									<p>I'm always looking for new opportunities.<br />
-									You can reach me by email or on LinkedIn.</p>
+									<h2>Contact</h2>
+									<p>Email or LinkedIn is the easiest way to reach me.</p>
 								</header>
 								<footer class="major">
 									<ul class="actions special">
-										<li><a href="resume.pdf" class="button primary">Download resume</a></li>
-										<li><a href="mailto:angelinasinopoli@gmail.com" class="button">Email me</a></li>
+										<li><a href="mailto:angelinasinopoli@gmail.com" class="button primary">Email me</a></li>
 										<li><a href="https://www.linkedin.com/in/angelina-sinopoli-534a3534b" class="button" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
 									</ul>
 								</footer>
@@ -270,7 +437,7 @@
 					<footer id="footer">
 						<section>
 							<h2>Get in touch</h2>
-							<p>I'm always open to new opportunities and happy to answer questions. My contact details are below.</p>
+							<p>If you have a question about my work or something I've built, email is the fastest way to reach me.</p>
 						</section>
 						<section>
 							<h2>Contact</h2>
@@ -281,8 +448,8 @@
 								<dd><a href="mailto:sinopoli.14@osu.edu">sinopoli.14@osu.edu</a></dd>
 							</dl>
 							<ul class="icons">
-								<li><a href="https://github.com/angiesinopoli" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
-								<li><a href="https://www.linkedin.com/in/angelina-sinopoli-534a3534b" class="icon brands fa-linkedin alt"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://github.com/angiesinopoli" class="icon brands fa-github alt" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><span class="label">GitHub</span></a></li>
+								<li><a href="https://www.linkedin.com/in/angelina-sinopoli-534a3534b" class="icon brands fa-linkedin alt" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span class="label">LinkedIn</span></a></li>
 							</ul>
 						</section>
 						<p class="copyright">&copy; Angie Sinopoli. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
@@ -299,6 +466,7 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script src="assets/js/constellation.js"></script>
+			<script src="assets/js/motion.js"></script>
 
 	</body>
 </html>
